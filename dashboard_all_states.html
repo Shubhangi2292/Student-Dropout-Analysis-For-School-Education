@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>All States — Student Dropout Analysis</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2b7b6f7ff.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --muted: #8b8fa6;
+      --accent: #5b7fff;
+      --accent-2: #1b9ce3;
+      --shadow: 0 8px 28px rgba(16, 24, 40, 0.06);
+
+      /* Chart Colors */
+      --c1: #5b7fff;
+      --c2: #1b9ce3;
+      --c3: #ff7a7a;
+      --c4: #ffd76b;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #eaf0ff;
+      padding: 20px;
+      color: black;
+    }
+
+    /* Header */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card);
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .state-card {
+      background: var(--card);
+      padding: 14px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .panels {
+      margin-top: 30px;
+      display: grid;
+      gap: 30px;
+    }
+
+    .panel {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .chart-card {
+      background: #f9fbff;
+      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      text-align: center;
+    }
+
+    /* LEGENDS */
+    .legend {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div class="logo">DA</div>
+      <div>
+        <h2 style="margin:0;">INDIA — Student Dropout Dashboard</h2>
+        <small style="color:var(--muted)">All States • Interactive • One Page</small>
+      </div>
+    </div>
+
+    <a href="index.html" class="btn ghost">
+      <i class="fa fa-home"></i> Home
+    </a>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-row" id="summaryRow"></div>
+
+  <!-- PANELS -->
+  <div class="panels" id="panelsRoot"></div>
+
+  <footer>© 2025 Dropout Analysis — All States Dashboard</footer>
+
+  <script>
+    const states = [
+      { name: "Meghalaya", code: "ML", dropout: 18 },
+      { name: "Karnataka", code: "KA", dropout: 15 },
+      { name: "Tamil Nadu", code: "TN", dropout: 11 },
+      { name: "Maharashtra", code: "MH", dropout: 12 },
+      { name: "Gujarat", code: "GJ", dropout: 9 },
+      { name: "West Bengal", code: "WB", dropout: 13 },
+      { name: "Rajasthan", code: "RJ", dropout: 20 },
+      { name: "Kerala", code: "KL", dropout: 6 },
+      { name: "Bihar", code: "BR", dropout: 24 },
+      { name: "Assam", code: "AS", dropout: 17 },
+    ];
+
+    const summary = document.getElementById("summaryRow");
+    const panels = document.getElementById("panelsRoot");
+
+    // Render Summary Cards
+    states.forEach(s => {
+      summary.innerHTML += `
+        <div class="state-card">
+          <h3>${s.name}</h3>
+          <p>Dropout Rate: <b>${s.dropout}%</b></p>
+        </div>`;
+    });
+
+    const labels = {
+      edu: ["Primary", "Middle", "Secondary", "Higher Sec"],
+      rel: ["Hindu", "Muslim", "Christian", "Other"],
+      caste: ["General", "OBC", "SC", "ST"],
+      reason: ["Finance", "Health", "Interest Loss", "Family Work"]
+    };
+
+    const colors = ["#5b7fff", "#1b9ce3", "#ff7a7a", "#ffd76b"];
+
+    // Render Panels
+    states.forEach(s => {
+      panels.innerHTML += `
+        <div class="panel">
+          <h2>${s.name} — ${s.dropout}% Dropout</h2>
+
+          <div class="charts-grid">
+
+            <!-- Education -->
+            <div class="chart-card">
+              <small><b>Education Level</b></small>
+              <canvas id="edu-${s.code}"></canvas>
+              <div class="legend">
+                ${labels.edu.map((l, i) => `
+                    <div class="legend-item">
+                      <span class="legend-color" style="background:${colors[i]}"></span> ${l}
+                    </div>`).join("")}
+              </div>
+            </div>
+
+            <!-- Religion -->
+            <div class="chart-card">
+              <small><b>Religion</b></small>
+              <canvas id="rel-${s.code}"></canvas>
+              <div class="legend">
+                ${labels.rel.map((l, i) => `
+                    <div class="legend-item">
+                      <span class="legend-color" style="background:${colors[i]}"></span> ${l}
+                    </div>`).join("")}
+              </div>
+            </div>
+
+            <!-- Caste -->
+            <div class="chart-card">
+              <small><b>Caste Category</b></small>
+              <canvas id="caste-${s.code}"></canvas>
+              <div class="legend">
+                ${labels.caste.map((l, i) => `
+                    <div class="legend-item">
+                      <span class="legend-color" style="background:${colors[i]}"></span> ${l}
+                    </div>`).join("")}
+              </div>
+            </div>
+
+            <!-- Reasons -->
+            <div class="chart-card">
+              <small><b>Dropout Reasons</b></small>
+              <canvas id="reason-${s.code}"></canvas>
+              <div class="legend">
+                ${labels.reason.map((l, i) => `
+                    <div class="legend-item">
+                      <span class="legend-color" style="background:${colors[i]}"></span> ${l}
+                    </div>`).join("")}
+              </div>
+            </div>
+
+          </div>
+        </div>`;
+    });
+
+    // Chart Generator
+    function random() { return Math.floor(Math.random() * 40) + 10; }
+
+    states.forEach(s => {
+      ["edu", "rel", "caste", "reason"].forEach(type => {
+        new Chart(document.getElementById(`${type}-${s.code}`), {
+          type: "doughnut",
+          data: {
+            labels: labels[type],
+            datasets: [{
+              data: [random(), random(), random(), random()],
+              backgroundColor: colors,
+              borderWidth: 0
+            }]
+          },
+          options: { plugins: { legend: { display: false } }, cutout: "68%" }
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Govt schemes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="style1.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Labrada&family=Roboto:ital@1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="left">STUDENT DROPOUT ANALYSIS SYSTEM</div>
+        <div class="right">
+          <ul id="sidemenu">
+           
+            <i class="fa-sharp fa-solid fa-xmark" onclick="closemenu()"></i>
+          </ul>
+          <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </div>
+      </nav>
+    </header>
+    <div class="containerm">
+      <center><h1 class="subtitlem">Mentorship Program</h1></center>
+      <div class="services-listm">
+        <div>
+          <i class="fa-solid fa-code"></i>
+        <!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Dropout Prevention Mentorship Platform</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              background: #f7f9fc;
+              color: #222;
+            }
+        
+            header {
+              background: #1f4b8f;
+              color: white;
+              padding: 20px;
+              text-align: center;
+            }
+        
+            nav {
+              background: #173a6a;
+              padding: 10px;
+              display: flex;
+              justify-content: center;
+              gap: 30px;
+            }
+        
+            nav a {
+              color: white;
+              text-decoration: none;
+              font-weight: bold;
+            }
+        
+            .container {
+              width: 90%;
+              max-width: 1100px;
+              margin: auto;
+              padding: 20px 0;
+            }
+        
+            h2 {
+              color: #173a6a;
+              margin-top: 40px;
+            }
+        
+            .section {
+              background: white;
+              padding: 25px;
+              border-radius: 10px;
+              margin-top: 15px;
+              box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            }
+        
+            input,
+            select,
+            textarea {
+              width: 100%;
+              padding: 12px;
+              margin-top: 8px;
+              border-radius: 6px;
+              border: 1px solid #ccc;
+            }
+        
+            button {
+              padding: 12px 20px;
+              background: #1f4b8f;
+              color: white;
+              border: none;
+              border-radius: 6px;
+              cursor: pointer;
+              font-weight: bold;
+            }
+        
+            .mentor-card {
+              background: #eef2fb;
+              padding: 14px;
+              border-radius: 8px;
+              margin: 10px 0;
+            }
+        
+            footer {
+              margin-top: 30px;
+              text-align: center;
+              background: #1f4b8f;
+              padding: 20px;
+              color: white;
+            }
+            #assign .section {
+    background: #bfbfbf !important;   /* Darker grey for inner box */
+    color: #000 !important;           /* Black text */
+}
+
+            #assign.section {
+    background: #cfcfcf !important;   /* Medium grey so black text is visible */
+    color: #000 !important;           /* Pure black text */
+}
+
+          </style>
+        </head>
+        
+        <body>
+          <header>
+            <h1>Dropout Prevention Mentorship Platform</h1>
+            <p>Connecting students in need with mentors who care</p>
+          </header>
+        
+          <nav>
+            <a href="#student">Find Mentor</a>
+            <a href="#mentor">Become a Mentor</a>
+            <a href="#assign">How Assigning Works</a>
+          </nav>
+        
+          <div class="container">
+        
+            <!-- STUDENT SECTION -->
+            <section id="student" class="section">
+              <h2>🔍 Students: Find the Right Mentor</h2>
+              <p>Search for mentors based on your interests, challenges, or career goals.</p>
+        
+              <label><strong>Your Name</strong></label>
+              <input type="text" placeholder="Enter your name" />
+        
+              <label><strong>Area you need help with</strong></label>
+              <select id="studentNeed">
+                <option>Academic Support</option>
+                <option>Mental & Emotional Guidance</option>
+                <option>Career Direction</option>
+                <option>Time Management</option>
+                <option>Motivation & Confidence</option>
+              </select>
+        
+              <label><strong>Describe your situation (optional)</strong></label>
+              <textarea placeholder="Tell us what you are struggling with..."></textarea>
+        
+              <button onclick="alert('Your request has been submitted. A mentor will be assigned soon.')">
+                Request a Mentor
+              </button>
+        
+              <h3 style="margin-top:30px;">Available Mentors:</h3>
+        
+              <!-- Example mentor list (can be dynamic) -->
+              <div class="mentor-card">
+                <strong>Dr. Neha Sharma</strong><br>
+                Specializes in: Academic Support, Motivation<br>
+                Experience: 10+ years teaching<br>
+              </div>
+        
+              <div class="mentor-card">
+                <strong>Rahul Verma</strong><br>
+                Specializes in: Career Guidance, IT field mentoring<br>
+                Experience: Software Engineer, Mentor for 3 years<br>
+              </div>
+        
+              <div class="mentor-card">
+                <strong>Anita Joshi</strong><br>
+                Specializes in: Emotional Support, Confidence Coaching<br>
+                Experience: Student counselor<br>
+              </div>
+        
+            </section>
+        
+            <!-- MENTOR SECTION -->
+            <section id="mentor" class="section">
+              <h2>👨‍🏫 Mentors: Join and Make a Difference</h2>
+              <p>Support a student who may be facing the risk of dropping out. Your guidance can change a life.</p>
+        
+              <form>
+                <label><strong>Your Name</strong></label>
+                <input type="text" placeholder="Enter full name" required>
+        
+                <label><strong>Email</strong></label>
+                <input type="email" placeholder="Enter email" required>
+        
+                <label><strong>Mentoring Expertise</strong></label>
+                <select required>
+                  <option>Academic Tutoring</option>
+                  <option>Career Guidance</option>
+                  <option>Mental Health Support</option>
+                  <option>Confidence & Motivation</option>
+                  <option>Skill Development</option>
+                </select>
+        
+                <label><strong>Your Experience</strong></label>
+                <textarea placeholder="Describe your background, why you want to mentor..." required></textarea>
+        
+                <button onclick="alert('Mentor application submitted successfully!')">
+                  Apply as Mentor
+                </button>
+              </form>
+            </section>
+        
+            <!-- ASSIGNING SECTION -->
+            <section id="assign" class="section">
+              <h2>🤝 How Mentor Assignment Works</h2>
+        
+              <p><strong>1. Students send a mentor request</strong></p>
+              <p>They choose the type of help they need (academic, emotional, career, etc.).</p>
+        
+              <p><strong>2. Mentors apply to volunteer</strong></p>
+              <p>Each mentor lists their expertise and availability.</p>
+        
+              <p><strong>3. The platform/system matches them</strong></p>
+              <ul>
+                <li>Based on expertise</li>
+                <li>Student's challenge area</li>
+                <li>Availability</li>
+                <li>Language preference</li>
+              </ul>
+        
+              <p><strong>4. Admin or automated system assigns the mentor</strong></p>
+              <p>
+                Once a suitable match is found, the student receives mentor details and can begin guidance sessions.
+              </p>
+        
+              <div class="section" style="background:#eef5ff; margin-top:20px;">
+                <h3>Matching Example</h3>
+                <p><strong>Student need:</strong> Academic Support → struggling in math</p>
+                <p><strong>Best mentor:</strong> Mentor with tutoring experience in math</p>
+                <p><strong>Result:</strong> Student receives personalized help → reduced dropout risk</p>
+              </div>
+        
+            </section>
+        
+          </div>
+        
+          <footer>
+            © 2025 Dropout Analysis Mentorship Program — Empowering students to stay in education
+          </footer>
+        
+        </body>
+        
+        </html>
+          >
+        </div>
+      </div>
+    </div>
+
+   
